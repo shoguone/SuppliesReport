@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SuppliesReport.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ExcelDataFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Docs\Data\Данные.xlsx</Value>
+    </Setting>
+    <Setting Name="TemplatesDirectoryPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Docs\Templates\</Value>
+    </Setting>
+    <Setting Name="TemplateActEliminationFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Акт ликвидации.docx</Value>
+    </Setting>
+    <Setting Name="TemplateActInspectionFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Акт проверки и осмотра.docx</Value>
+    </Setting>
+    <Setting Name="TemplateActWritingOffFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Акт списания.docx</Value>
+    </Setting>
+    <Setting Name="TemplateOrderWritingOffFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Приказ о списании.docx</Value>
+    </Setting>
+    <Setting Name="TemplateProtocolSessionFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Протокол заседания комиссии.docx</Value>
+    </Setting>
+    <Setting Name="OutputDirectoryPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Docs\</Value>
+    </Setting>
+    <Setting Name="WritingoffInventorynameHelpString" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> Инв. № </Value>
+    </Setting>
+    <Setting Name="TemplateReportFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Отчет.docx</Value>
+    </Setting>
+    <Setting Name="TemplateSupplyPopFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Снятие с довольствия.docx</Value>
+    </Setting>
+    <Setting Name="TemplateSupplyPushFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Шаблон Постановка на довольствие.docx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
