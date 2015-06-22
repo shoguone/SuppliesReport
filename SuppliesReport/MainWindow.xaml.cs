@@ -80,7 +80,7 @@ namespace SuppliesReport
             }
             else
             {
-                MessageBox.Show("Выберите дату снятия с довольствия");
+                MessageBox.Show("Выберите дату постановки на довольствие");
             }
         }
 

@@ -151,6 +151,7 @@
       <DependentUpon>FormModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utility\CustomFormat.cs" />
+    <Compile Include="Utility\LogEntry.cs" />
     <Compile Include="Utility\RuDateAndMoneyConverter.cs" />
     <Compile Include="WordProcessor.cs" />
     <Page Include="MainWindow.xaml">

@@ -43,14 +43,33 @@ namespace SuppliesReport
                 {
                     IncludeStyles(doc);
 
-                    List<PRIZ> data;
+                    List<LogEntry> data;
                     using (var ctx = new FormContext())
                     {
+                        //data = ctx.PRIZ
+                        //    .Where(p => p.FL_UV == 1 && p.D_U_UVOL.HasValue)
+                        //    .OrderBy(p => p.FAM).ThenBy(p => p.IM).ThenBy(p => p.OTCH)
+                        //    .AsEnumerable()
+                        //    .Where(p => p.D_U_UVOL.Value.Date == firingDate)
+                        //    .ToList();
+                        //var a = ctx.PRIZ
+                        //    //.Join(ctx.LOG_P, p => p.ID, l => l.KOD, (p, l) => new LogEntry(p, l));
+                        //    //.Join(ctx.LOG_P, p => p.ID, l => l.KOD, (p, l) => new { Priz = p, Log = l });
+                        //    .Join(ctx.LOG_P, p => p.ID, l => l.KOD, (p, l) => new LogEntry() { Priz = p, Log = l });
+                        //var b = a
+                        //    .Where(j => j.Log.N_N_KOM == "14");
+                        //var c = b
+                        //    .OrderBy(p => p.Priz.FAM).ThenBy(p => p.Priz.IM).ThenBy(p => p.Priz.OTCH)
+                        //    .AsEnumerable();
+                        //var d = c
+                        //    .Where(j => j.Log.D_IZM.Value.Date == firingDate);
+                        //var e = d.ToList();
                         data = ctx.PRIZ
-                            .Where(p => p.FL_UV == 1 && p.D_U_UVOL.HasValue)
-                            .OrderBy(p => p.FAM).ThenBy(p => p.IM).ThenBy(p => p.OTCH)
+                            .Join(ctx.LOG_P, p => p.ID, l => l.KOD, (p, l) => new LogEntry() { Priz = p, Log = l })
+                            .Where(j => j.Log.N_N_KOM == "14")
+                            .OrderBy(p => p.Priz.FAM).ThenBy(p => p.Priz.IM).ThenBy(p => p.Priz.OTCH)
                             .AsEnumerable()
-                            .Where(p => p.D_U_UVOL.Value.Date == firingDate)
+                            .Where(j => j.Log.D_IZM.Value.Date == firingDate)
                             .ToList();
                     }
                     SdtBlock list = GetContentBlockByTag(doc, "tagList");
@@ -98,14 +117,21 @@ namespace SuppliesReport
                 {
                     IncludeStyles(doc);
 
-                    List<PRIZ> data;
+                    List<LogEntry> data;
                     using (var ctx = new FormContext())
                     {
+                        //data = ctx.PRIZ
+                        //    .Where(p => p.FL_UV == 1 && p.D_U_UVOL.HasValue)
+                        //    .OrderBy(p => p.FAM).ThenBy(p => p.IM).ThenBy(p => p.OTCH)
+                        //    .AsEnumerable()
+                        //    .Where(p => p.D_P_UVOL.Value.Date == hiringDate)
+                        //    .ToList();
                         data = ctx.PRIZ
-                            .Where(p => p.FL_UV == 1 && p.D_U_UVOL.HasValue)
-                            .OrderBy(p => p.FAM).ThenBy(p => p.IM).ThenBy(p => p.OTCH)
+                            .Join(ctx.LOG_P, p => p.ID, l => l.KOD, (p, l) => new LogEntry() { Priz = p, Log = l })
+                            .Where(j => j.Log.O_N_KOM == "14")
+                            .OrderBy(p => p.Priz.FAM).ThenBy(p => p.Priz.IM).ThenBy(p => p.Priz.OTCH)
                             .AsEnumerable()
-                            .Where(p => p.D_P_UVOL.Value.Date == hiringDate)
+                            .Where(j => j.Log.D_IZM.Value.Date == hiringDate)
                             .ToList();
                     }
                     SdtBlock list = GetContentBlockByTag(doc, "tagList");
@@ -322,7 +348,7 @@ namespace SuppliesReport
 
         }
 
-        private void FillSupplyPopTable(SdtBlock block, List<PRIZ> entities)
+        private void FillSupplyPopTable(SdtBlock block, List<LogEntry> entities)
         {
             if (block != null)
             {
@@ -330,16 +356,16 @@ namespace SuppliesReport
                 //var lastRow = table.Descendants<TableRow>().LastOrDefault();
 
                 int i = 1;
-                foreach (PRIZ entity in entities)
+                foreach (LogEntry entity in entities)
                 {
                     TableRow row = table.AppendChild<TableRow>(new TableRow());
                     //TableRow row = table.InsertBefore<TableRow>(new TableRow(), lastRow);
 
                     AddStyledTextToTheRow(row, i.ToString(), centerStyleId);
                     AddStyledTextToTheRow(row, string.Format("{0} {1} {2}",
-                        entity.FAM, entity.IM, entity.OTCH), leftStyleId);
-                    AddStyledTextToTheRow(row, entity.D_ROD.GetValueOrDefault().ToShortDateString(), centerStyleId);
-                    AddStyledTextToTheRow(row, entity.RVK, leftStyleId);
+                        entity.Priz.FAM, entity.Priz.IM, entity.Priz.OTCH), leftStyleId);
+                    AddStyledTextToTheRow(row, entity.Priz.D_ROD.GetValueOrDefault().ToShortDateString(), centerStyleId);
+                    AddStyledTextToTheRow(row, entity.Priz.RVK, leftStyleId);
                     //AddStyledTextToTheRow(row, entity.CostFloat.ToString("F2"), centerStyleId);
                     //AddStyledTextToTheRow(row, entity.SummaryCost.ToString("F2"), centerStyleId);
                     i++;
